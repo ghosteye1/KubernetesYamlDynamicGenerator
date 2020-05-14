@@ -33,9 +33,13 @@ pipeline {
                         }
                     }
 
-                    sh "echo -e version := 1.0.${cplxStrng} >> ingressDynamic.yaml"
+                    //sh "echo version := 1.0.${cplxStrng} >> ingressDynamic.yaml"
+                    pathA = "/api/one"
 
-                    sh "printf '%s\t%s\n' 'Data1' '${cplxStrng}' >> ingressDynamic.yaml"
+                    sh "printf '\t\t\t- path: %s\n' '${pathA}' >> ingressDynamic.yaml"
+                    sh "printf '\t\t\t- path: %s\n' '${pathA}' >> ingressDynamic.yaml"
+
+                    //sh "printf '%s\t%s\n' 'Data1' '${cplxStrng}' >> ingressDynamic.yaml"
                 }
         }     
         // stage('Create name space GKE') {
