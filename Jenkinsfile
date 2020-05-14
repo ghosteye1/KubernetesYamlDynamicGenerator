@@ -29,7 +29,7 @@ pipeline {
                     script{
                         for (int i = 0; i < SERVERDIRS.size(); i++) {
                             //echo "${SERVERDIRS[i]}"
-                            cplxStrng = cplxStrng + "\t"+ SERVERDIRS[i] + "\n"
+                            cplxStrng = cplxStrng + "\t"+ SERVERDIRS[i] //+ "\n"
                         }
                     }
 
