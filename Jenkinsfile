@@ -33,7 +33,7 @@ pipeline {
                         }
                     }
 
-                    sh "echo version := 1.0.${cplxStrng} >> ingressDynamic.yaml"
+                    sh "echo -e version := 1.0.${cplxStrng} >> ingressDynamic.yaml"
                 }
         }     
         // stage('Create name space GKE') {
