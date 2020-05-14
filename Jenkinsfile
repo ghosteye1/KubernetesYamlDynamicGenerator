@@ -1,3 +1,5 @@
+SERVERDIRS = [ "DIR -1" , "DIR -2" ]
+
 pipeline {
     agent any
     environment {
@@ -16,6 +18,16 @@ pipeline {
                     print('param '+env.param1)
                 }
             }
+        }
+        stages	{
+            stage ('Looping') {
+                steps	{
+                    script{
+                        for (int i = 0; i < SERVERDIRS.size(); i++) {
+                            echo "${SERVERDIRS[i]}"
+                        }
+                    }
+                }
         }     
         // stage('Create name space GKE') {
         //     steps{
