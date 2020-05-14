@@ -14,13 +14,15 @@ pipeline {
         stage('Hello') {
             steps {
                 echo 'Hello World'
+
+                sh "sed -i 's/-cus-content-/hello:${env.param1}/g' ingressDynamic.yaml"
+
                 script {
                     print('param '+env.param1)
                 }
             }
         }
-        stages	{
-            stage ('Looping') {
+        stage ('Looping') {
                 steps	{
                     script{
                         for (int i = 0; i < SERVERDIRS.size(); i++) {
