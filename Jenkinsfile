@@ -1,5 +1,7 @@
 SERVERDIRS = [ "DIRsxs -1" , "DIRxssxs -2" ]
 cplxStrng = "A";
+pathA = "/api/one"
+
 pipeline {
     agent any
     environment {
@@ -34,7 +36,7 @@ pipeline {
                     }
 
                     //sh "echo version := 1.0.${cplxStrng} >> ingressDynamic.yaml"
-                    pathA = "/api/one"
+                    
 
                     sh "printf '\t\t\t- path: %s\n' '${pathA}' >> ingressDynamic.yaml"
                     sh "printf '\t\t\t- path: %s\n' '${pathA}' >> ingressDynamic.yaml"
