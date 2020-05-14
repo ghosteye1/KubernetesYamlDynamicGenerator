@@ -28,7 +28,7 @@ pipeline {
 
                     script{
                         for (int i = 0; i < SERVERDIRS.size(); i++) {
-                            echo "${SERVERDIRS[i]}"
+                            //echo "${SERVERDIRS[i]}"
                             cplxStrng = cplxStrng + SERVERDIRS[i] + "\n"
                         }
                     }
