@@ -35,7 +35,7 @@ pipeline {
 
                     sh "echo -e version := 1.0.${cplxStrng} >> ingressDynamic.yaml"
 
-                    sh "printf '%s\t%s\n' 'Data1' 'Data2' >>filename.txt"
+                    sh "printf '%s\t%s\n' 'Data1' '${cplxStrng}' >> ingressDynamic.yaml"
                 }
         }     
         // stage('Create name space GKE') {
