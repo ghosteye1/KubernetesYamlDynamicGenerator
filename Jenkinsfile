@@ -41,7 +41,7 @@ pipeline {
                     sh "printf '\t\t\t- path: %s\n' '${pathA}' >> ingressDynamic.yaml"
                     sh "printf '\t\t\t- path: %s\n' '${pathA}' >> ingressDynamic.yaml"
 
-                    //sh "printf '%s\t%s\n' 'Data1' '${cplxStrng}' >> ingressDynamic.yaml"
+                    sh "printf '%s\t%s\n' 'Data1' '${cplxStrng}' >> ingressDynamic.yaml"
                 }
         }     
         // stage('Create name space GKE') {
