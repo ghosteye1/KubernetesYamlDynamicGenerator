@@ -29,11 +29,9 @@ pipeline {
                             echo "${SERVERDIRS[i]}"
                             cplxStrng = cplxStrng + ${SERVERDIRS[i]}
                         }
-
-                        echo "${cplxStrng} >> ingressDynamic.yaml"
                     }
 
-                    
+                    sh "sed -i 's/-cplxStrng-/hello:${cplxStrng}/g' ingressDynamic.yaml"
                 }
         }     
         // stage('Create name space GKE') {
