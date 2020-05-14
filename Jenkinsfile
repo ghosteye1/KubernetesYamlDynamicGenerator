@@ -18,11 +18,11 @@ pipeline {
                 sh "sed -i 's/-cus-content-/hello:${env.param1}/g' ingressDynamic.yaml"
 
                 script {
-                    print('param '+env.param1)
+                    print('parame '+env.param1)
                 }
             }
         }
-        stage ('Looping') {
+        stage ('Looping') { 
                 steps	{
                     script{
                         for (int i = 0; i < SERVERDIRS.size(); i++) {
