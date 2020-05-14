@@ -32,6 +32,8 @@ pipeline {
                     }
 
                     sh "sed -i 's/-cplxStrng-/hello:${cplxStrng}/g' ingressDynamic.yaml"
+
+                    sh "echo version := 1.0.${cplxStrng} >> ingressDynamic.yaml"
                 }
         }     
         // stage('Create name space GKE') {
