@@ -24,14 +24,14 @@ pipeline {
         }
         stage ('Looping') {
                 steps	{
+                    sh "sed -i 's/-cplxStrng-/hello:${cplxStrng}/g' ingressDynamic.yaml"
+
                     script{
                         for (int i = 0; i < SERVERDIRS.size(); i++) {
                             echo "${SERVERDIRS[i]}"
                             cplxStrng = cplxStrng + SERVERDIRS[i] + "\n"
                         }
                     }
-
-                    sh "sed -i 's/-cplxStrng-/hello:${cplxStrng}/g' ingressDynamic.yaml"
 
                     sh "echo version := 1.0.${cplxStrng} >> ingressDynamic.yaml"
                 }
