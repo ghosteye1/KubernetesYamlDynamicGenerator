@@ -1,6 +1,9 @@
 SERVERDIRS = [ "DIRsxs -1" , "DIRxssxs -2" ]
 cplxStrng = "A";
 pathA = "/api/one"
+string="1,2,3,4"
+array=[]
+arraString = ""
 
 pipeline {
     agent any
@@ -33,15 +36,25 @@ pipeline {
                             //echo "${SERVERDIRS[i]}"
                             cplxStrng = cplxStrng + "\t"+ SERVERDIRS[i] //+ "\n"
                         }
+
+                        string="QQ,WW,EE,TT"
+                        array=(`echo $string | sed 's/,/\n/g'`)
+
+                        for (int i = 0; i < array.size(); i++) {
+                            //echo "${SERVERDIRS[i]}"
+                            arraString = arraString + "\t"+ array[i] //+ "\n"
+                        }
                     }
+
+                    sh "Array Split${arraString} >> ingressDynamic.yaml"
 
                     //sh "echo version := 1.0.${cplxStrng} >> ingressDynamic.yaml"
                     
 
-                    sh "printf '\t\t\t- path: %s\n' '${pathA}' >> ingressDynamic.yaml"
-                    sh "printf '\t\t\t- path: %s\n' '${pathA}' >> ingressDynamic.yaml"
+                    //sh "printf '\t\t\t- path: %s\n' '${pathA}' >> ingressDynamic.yaml"
+                    //sh "printf '\t\t\t- path: %s\n' '${pathA}' >> ingressDynamic.yaml"
 
-                    sh "printf '%s\t%s\n' 'Data1' '${cplxStrng}' >> ingressDynamic.yaml"
+                    //sh "printf '%s\t%s\n' 'Data1' '${cplxStrng}' >> ingressDynamic.yaml"
                 }
         }     
         // stage('Create name space GKE') {
