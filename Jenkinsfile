@@ -1,5 +1,5 @@
 SERVERDIRS = [ "DIR -1" , "DIR -2" ]
-
+cplxStrng = "A";
 pipeline {
     agent any
     environment {
@@ -18,17 +18,20 @@ pipeline {
                 sh "sed -i 's/-cus-content-/hello:${env.param1}/g' ingressDynamic.yaml"
 
                 script {
-                    print('parame '+env.param1)
+                    print('param '+env.param1)
                 }
             }
         }
-        stage ('Looping') { 
+        stage ('Looping') {
                 steps	{
                     script{
                         for (int i = 0; i < SERVERDIRS.size(); i++) {
-                            echo "${SERVERDIRS[i]}" >> ingressDynamic.yaml
+                            echo "${SERVERDIRS[i]}"
+                            cplxStrng = cplxStrng + ${SERVERDIRS[i]}
                         }
                     }
+
+                    sh "echo ${cplxStrng} >> ingressDynamic.yaml"
                 }
         }     
         // stage('Create name space GKE') {
