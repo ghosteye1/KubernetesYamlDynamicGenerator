@@ -1,4 +1,4 @@
-SERVERDIRS = [ "DIR -1" , "DIR -2" ]
+SERVERDIRS = [ "DIRsxs -1" , "DIRxssxs -2" ]
 cplxStrng = "A";
 pipeline {
     agent any
@@ -29,7 +29,7 @@ pipeline {
                     script{
                         for (int i = 0; i < SERVERDIRS.size(); i++) {
                             //echo "${SERVERDIRS[i]}"
-                            cplxStrng = cplxStrng + SERVERDIRS[i] + "\n"
+                            cplxStrng = cplxStrng + "\t"+ SERVERDIRS[i] + "\n"
                         }
                     }
 
