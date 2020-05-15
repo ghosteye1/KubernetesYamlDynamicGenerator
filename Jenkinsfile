@@ -32,82 +32,82 @@ pipeline {
                 checkout scm
             }
         }
-        // stage('Make folder for deployments scripts yaml') {
-        //     steps {
-        //         sh "rm -rf k8s"
-        //         sh "mkdir k8s"
+        stage('Make folder for deployments scripts yaml') {
+            steps {
+                sh "rm -rf k8s"
+                sh "mkdir k8s"
                 
-        //         script {
-        //             print('appName '+env.appname)
-        //             print('namespace '+env.namespace)
-        //             print('replicas '+env.replicas)
-        //             print('imagePath '+env.imagePath)
-        //             print('serviceName '+env.serviceName)
-        //             print('clusterIP '+env.clusterIP)
-        //             print('servicePort '+env.servicePort)
-        //             print('protocol '+env.protocol)
-        //         }
-        //     }
-        // }
-        // stage('generate dynamic deployments') {
-        //     steps {
-        //         script {
-        //             appname = appname.split(',')
-        //             namespace = namespace.split(',')
-        //             replicas = replicas.split(',')
-        //             imagepath = imagepath.split(',')
-        //             servicename = servicename.split(',')
-        //             clusterip = clusterip.split(',')
-        //             serviceport = serviceport.split(',')
-        //             protocol = protocol.split(',')
+                script {
+                    print('appName '+env.appname)
+                    print('namespace '+env.namespace)
+                    print('replicas '+env.replicas)
+                    print('imagePath '+env.imagePath)
+                    print('serviceName '+env.serviceName)
+                    print('clusterIP '+env.clusterIP)
+                    print('servicePort '+env.servicePort)
+                    print('protocol '+env.protocol)
+                }
+            }
+        }
+        stage('generate dynamic deployments') {
+            steps {
+                script {
+                    appname = appname.split(',')
+                    namespace = namespace.split(',')
+                    replicas = replicas.split(',')
+                    imagepath = imagepath.split(',')
+                    servicename = servicename.split(',')
+                    clusterip = clusterip.split(',')
+                    serviceport = serviceport.split(',')
+                    protocol = protocol.split(',')
 
-        //             for (int j = 0; j < appname.size(); j++) {
-        //                 echo "${appname[j]}"
-        //                 sh "cp deployment.yaml k8s/${appname[j]}.yaml"
+                    for (int j = 0; j < appname.size(); j++) {
+                        echo "${appname[j]}"
+                        sh "cp deployment.yaml k8s/${appname[j]}.yaml"
 
-        //                 sh "sed -i 's!-app-name-!${appname[j]}!g' k8s/${appname[j]}.yaml"
-        //                 sh "sed -i 's!-name-space-!${namespace[j]}!g' k8s/${appname[j]}.yaml"
-        //                 sh "sed -i 's!-repli-cas-!${replicas[j]}!g' k8s/${appname[j]}.yaml"
-        //                 sh "sed -i 's!-image-path-!${imagepath[j]}!g' k8s/${appname[j]}.yaml"
-        //                 sh "sed -i 's!-service-name-!${servicename[j]}!g' k8s/${appname[j]}.yaml"
-        //                 sh "sed -i 's!-cluster-ip-!${clusterip[j]}!g' k8s/${appname[j]}.yaml"
-        //                 sh "sed -i 's!-service-port-!${serviceport[j]}!g' k8s/${appname[j]}.yaml"
-        //                 sh "sed -i 's!-proto-col-!${protocol[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-app-name-!${appname[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-name-space-!${namespace[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-repli-cas-!${replicas[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-image-path-!${imagepath[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-service-name-!${servicename[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-cluster-ip-!${clusterip[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-service-port-!${serviceport[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-proto-col-!${protocol[j]}!g' k8s/${appname[j]}.yaml"
 
-        //             }
-        //         }
-        //     }
-        // }
+                    }
+                }
+            }
+        }
 
-        // stage('generate dynamic deployments') {
-        //     steps {
-        //         script {
-        //             ingressPathArray = ingressPaths.split(',')
+        stage('generate dynamic deployments') {
+            steps {
+                script {
+                    ingressPathArray = ingressPaths.split(',')
 
-        //             for (int j = 0; j < SERVERDIRS.size(); j++) {
-        //                 //echo "${SERVERDIRS[i]}"
-        //                 sh "cp ingressDynamic.yaml k8s/${SERVERDIRS[j]}.yaml"
+                    for (int j = 0; j < SERVERDIRS.size(); j++) {
+                        //echo "${SERVERDIRS[i]}"
+                        sh "cp ingressDynamic.yaml k8s/${SERVERDIRS[j]}.yaml"
 
-        //                 cplxStrng = ""
-        //                 for (int i = 0; i < ingressPathArray.size(); i++) {
-        //                     echo "ingressPathArray : ${ingressPathArray[i]}"
-        //                     //cplxStrng = cplxStrng + "\t"+ texts[i] + "|END|" //"/\n"
+                        cplxStrng = ""
+                        for (int i = 0; i < ingressPathArray.size(); i++) {
+                            echo "ingressPathArray : ${ingressPathArray[i]}"
+                            //cplxStrng = cplxStrng + "\t"+ texts[i] + "|END|" //"/\n"
 
-        //                     cplxStrng = cplxStrng + "      - path:" + ingressPathArray[i] + "|END|"
-        //                     cplxStrng = cplxStrng + "        backend:" + "|END|"
-        //                     cplxStrng = cplxStrng + "          serviceName: wncp-backend-service" + "|END|"
-        //                     cplxStrng = cplxStrng + "          servicePort: 8080" + "|END|"
-        //                     cplxStrng = cplxStrng + "      -----         " + "|END|"
+                            cplxStrng = cplxStrng + "      - path:" + ingressPathArray[i] + "|END|"
+                            cplxStrng = cplxStrng + "        backend:" + "|END|"
+                            cplxStrng = cplxStrng + "          serviceName: wncp-backend-service" + "|END|"
+                            cplxStrng = cplxStrng + "          servicePort: 8080" + "|END|"
+                            cplxStrng = cplxStrng + "      -----         " + "|END|"
 
-        //                 }
+                        }
 
-        //                 sh "sed -i 's!-cplxStrng-!${cplxStrng}!g' k8s/${SERVERDIRS[j]}.yaml"
+                        sh "sed -i 's!-cplxStrng-!${cplxStrng}!g' k8s/${SERVERDIRS[j]}.yaml"
 
-        //                 sh "sed -i 's/|END|/\\n/g' k8s/${SERVERDIRS[j]}.yaml"
-        //             }
-        //         }
-        //     }
-        // }
+                        sh "sed -i 's/|END|/\\n/g' k8s/${SERVERDIRS[j]}.yaml"
+                    }
+                }
+            }
+        }
 
         stage('Create name space GKE') {
             steps{
@@ -116,8 +116,9 @@ pipeline {
         } 
         stage('Applying all yaml to GKE') {
             steps{
+                sh "ls k8s/"
                 // step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'k8s/', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
-                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'multi-deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+                // step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'multi-deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
             }
         }
 
