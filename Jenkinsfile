@@ -64,7 +64,7 @@ pipeline {
                     for (int j = 0; j < appname.size(); j++) {
                         echo "${appname[j]}"
                         sh "cp deployment.yaml k8s/${appname[j]}.yaml"
-                        sh "cp namespace-create.json k8s/${appname[j]}-namespace.json"
+                        sh "cp namespace-create.json k8s/namespace${j}.json"
 
                         sh "sed -i 's!-app-name-!${appname[j]}!g' k8s/${appname[j]}.yaml"
                         sh "sed -i 's!-name-space-!${namespace[j]}!g' k8s/${appname[j]}.yaml"
@@ -111,19 +111,19 @@ pipeline {
         //     }
         // }
 
-        stage('Create name space GKE') {
-            steps{
-                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'namespace-create.json', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
-            }
-        } 
-        stage('Applying all yaml to GKE') {
-            steps{
-                sh "ls k8s/"
-                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'k8s/', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
-                // step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'k8s/wncp-fronend.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
-                // step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'multi-deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
-            }
-        }
+        // stage('Create name space GKE') {
+        //     steps{
+        //         step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'namespace-create.json', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+        //     }
+        // } 
+        // stage('Applying all yaml to GKE') {
+        //     steps{
+        //         sh "ls k8s/"
+        //         step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'k8s/', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+        //         // step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'k8s/wncp-fronend.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+        //         // step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'multi-deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+        //     }
+        // }
 
         // stage ('Looping') {
         //         steps	{
