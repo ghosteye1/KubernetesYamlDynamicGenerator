@@ -40,13 +40,13 @@ pipeline {
 
                 script {
                     print('appName '+env.appName)
-                    print('namespace '+env.namespace)
-                    print('replicas '+env.replicas)
-                    print('imagePath '+env.imagePath)
-                    print('serviceName '+env.serviceName)
-                    print('clusterIP '+env.clusterIP)
-                    print('servicePort '+env.servicePort)
-                    print('protocol '+env.protocol)
+                    // print('namespace '+env.namespace)
+                    // print('replicas '+env.replicas)
+                    // print('imagePath '+env.imagePath)
+                    // print('serviceName '+env.serviceName)
+                    // print('clusterIP '+env.clusterIP)
+                    // print('servicePort '+env.servicePort)
+                    // print('protocol '+env.protocol)
                 }
             }
         }
