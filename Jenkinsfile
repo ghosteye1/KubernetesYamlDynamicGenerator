@@ -1,5 +1,5 @@
 SERVERDIRS = [ "DIRsxs -1" , "DIRxssxs -2" ]
-cplxStrng = "A";
+cplxStrng = "";
 pathA = "/api/one"
 stringAAA ="1,2,3,4"
 array=[]
@@ -75,7 +75,7 @@ pipeline {
                         // }
                     }
 
-                    sh "sed -i 's/-cplxStrng-/hello:${cplxStrng}/g' ingressDynamic.yaml"
+                    sh "sed -i 's/-cplxStrng-/${cplxStrng}/g' ingressDynamic.yaml"
 
                     // sh "sed -i 's/|END|/\n/g' ingressDynamic.yaml"
 
