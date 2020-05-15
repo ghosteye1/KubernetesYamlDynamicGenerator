@@ -43,6 +43,11 @@ pipeline {
                             sh "echo ${txt}"
                         }
 
+                        for (int i = 0; i < texts.size(); i++) {
+                            echo "Arra for loop: ${texts[i]}"
+                            //cplxStrng = cplxStrng + "\t"+ texts[i] //+ "\n"
+                        }
+
                         // string="QQ,WW,EE,TT"
                         // array=(echo $string | sed 's/,/\n/g')
 
@@ -52,7 +57,7 @@ pipeline {
                         // }
                     }
 
-                    sh "Array Split${arraString} >> ingressDynamic.yaml"
+                    // sh "Array Split${arraString} >> ingressDynamic.yaml"
 
                     //sh "echo version := 1.0.${cplxStrng} >> ingressDynamic.yaml"
                     
