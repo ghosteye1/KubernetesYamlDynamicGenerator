@@ -71,10 +71,10 @@ pipeline {
                     for (int i = 0; i < ingressBackendPathsAry.size(); i++) {
                         echo "ingressPathArray : ${ingressBackendPathsAry[i]}"
                         
-                        cplxStrng = cplxStrng + "      - path:" + ingressBackendPathsAry[i] + "|END|"
-                        cplxStrng = cplxStrng + "        backend:" + "|END|"
+                        cplxStrng = cplxStrng + "      - backend:" + "|END|"
                         cplxStrng = cplxStrng + "          serviceName:" + ingressBackendServiceNamesAry[i] + "|END|"
                         cplxStrng = cplxStrng + "          servicePort:" + ingressBackendServicePortsAry[i] + "|END|"
+                        cplxStrng = cplxStrng + "        path:" + ingressBackendPathsAry[i] + "|END|"
                         
                     }
 
