@@ -66,6 +66,15 @@ pipeline {
                         echo "${appname[j]}"
                         sh "cp deployment.yaml k8s/${appname[j]}.yaml"
 
+                        sh "sed -i 's!-app-name-!${appname[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-name-space-!${namespace[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-repli-cas-!${replicas[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-image-path-!${imagepath[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-service-name-!${servicename[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-cluster-ip-!${clusterip[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-service-port-!${serviceport[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-proto-col-!${protocol[j]}!g' k8s/${appname[j]}.yaml"
+
                         // cplxStrng = ""
                         // for (int i = 0; i < ingressPathArray.size(); i++) {
                         //     echo "ingressPathArray : ${ingressPathArray[i]}"
