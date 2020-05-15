@@ -6,4 +6,4 @@ curl -s -u sameera:test.12345 http://localhost:8080/crumbIssuer/api/json
 Make call using crumb
 curl -X POST http://saumik1.mylabserver.com:8080/job/RestAPI-Test1/build --user sameera:<API Token> -H 'Jenkins-Crumb:<the crumb>'
 
-curl -X POST http://localhost:8080/job/RestAPI-Test1/build --user sameera:113a8346280f9b195011099b81a3b53cf3 -H 'Jenkins-Crumb:c3d371ecd8af4d071071d376f1d1860c3385925e14754e5ed07af2369a632e1e' --data-urlencode json='{"parameter": [{"name":"param1", "value":"AA,CC,FF,GGG"}]}'
+curl -X POST http://localhost:8080/job/RestAPI-Test1/build --user sameera:113a8346280f9b195011099b81a3b53cf3 -H 'Jenkins-Crumb:c3d371ecd8af4d071071d376f1d1860c3385925e14754e5ed07af2369a632e1e' --data-urlencode json='{"parameter": [{"name":"param1", "value":"AA,CC,FF,GGG"}, {"name": "ingressPaths": "value":"/cloud-portal-services/*,/cloud-portal-services2/*,/cloud-portal-services3/*"} ]}'

@@ -4,11 +4,13 @@ pathA = "/api/one"
 stringAAA ="1,2,3,4"
 array=[]
 arraString = ""
+ingressPaths = "na"
 
 pipeline {
     agent any
     environment {
         param1 = "${param1}"
+        ingressPaths = "${ingressPaths}"
     }
     stages {
         stage("Checkout code") {
@@ -51,9 +53,9 @@ pipeline {
 
 
 
-                        texts = param1.split(',')
-                        for (int i = 0; i < texts.size(); i++) {
-                            echo "param1 for loop: ${texts[i]}"
+                        ingressPathArray = ingressPaths.split(',')
+                        for (int i = 0; i < ingressPathArray.size(); i++) {
+                            echo "ingressPathArray : ${ingressPathArray[i]}"
                             //cplxStrng = cplxStrng + "\t"+ texts[i] + "|END|" //"/\n"
 
                             cplxStrng = cplxStrng + "      - path: /cloud-portal-services/*" + "|END|"
