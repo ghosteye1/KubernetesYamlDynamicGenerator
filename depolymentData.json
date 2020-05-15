@@ -14,11 +14,11 @@
       },
       {
          "name":"imagepath",
-         "value":"gcr.io/wn-cloud-275704/cloud-portal-service@sha256:d44480f23dc411a38b65c95e27508a3101c743f2392b2b98455cde237433e730,gcr.io/wn-cloud-275704/cloud-portal-frontend@sha256:a43821b760dbb883e089f55c12b2a5553f4017bc812f733a1403452402026134"
+         "value":"gcr.io/wn-cloud-275704/cloud-portal-service@sha256:d0afe7807c15da77167c08bbe35158af0ee884e6b61d948e8ad3e589394e4a79,gcr.io/wn-cloud-275704/cloud-portal-frontend@sha256:d084073ec9437f2b97128a516d0d09f4bd9694c12e334bb1ec294d2c8a98317a"
       },
       {
          "name":"servicename",
-         "value":"wncp-backend-service, wncp-fronend-service"
+         "value":"wncp-backend-service,wncp-fronend-service"
       },
       {
          "name":"clusterip",
