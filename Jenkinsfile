@@ -4,7 +4,6 @@ pathA = "/api/one"
 stringAAA ="1,2,3,4"
 array=[]
 arraString = ""
-ingressPaths = "na"
 
 pipeline {
     agent any
