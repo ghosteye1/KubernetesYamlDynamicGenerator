@@ -56,5 +56,3 @@ spec:
     app: -app-name-
   sessionAffinity: None
   type: NodePort
-
----
