@@ -4,6 +4,7 @@ pathA = "/api/one"
 string="1,2,3,4"
 array=[]
 arraString = ""
+string='foo|bar'
 
 pipeline {
     agent any
@@ -37,11 +38,11 @@ pipeline {
                             cplxStrng = cplxStrng + "\t"+ SERVERDIRS[i] //+ "\n"
                         }
 
-                        def repeat(val, x=10){
-                            for(i in 0..<x){
-                                println val
-                            }
-                        }
+                        
+                        IFS='|'; set -f
+                        array=($string)
+
+                        echo "${array[0]}"
 
                         // string="QQ,WW,EE,TT"
                         // array=(echo $string | sed 's/,/\n/g')
