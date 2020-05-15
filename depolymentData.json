@@ -1,65 +1,64 @@
 {
-    "parameter":[
-       {
-          "name":"appname",
-          "value":"wncp-backend,wncp-fronend"
-       },
-       {
-          "name":"namespace",
-          "value":"wncp-test-1,wncp-test-1"
-       },
-       {
-          "name":"replicas",
-          "value":"1,1"
-       },
-       {
-          "name":"imagepath",
-          "value":"gcr.io/wn-cloud-275704/cloud-portal-service@sha256:d44480f23dc411a38b65c95e27508a3101c743f2392b2b98455cde237433e730,gcr.io/wn-cloud-275704/cloud-portal-frontend@sha256:a43821b760dbb883e089f55c12b2a5553f4017bc812f733a1403452402026134"
-       },
-       {
-          "name":"servicename",
-          "value":"wncp-backend-service, wncp-fronend-service"
-       },
-       {
-          "name":"clusterip",
-          "value":"10.0.1.2,10.0.1.1"
-       },
-       {
-          "name":"serviceport",
-          "value":"8080,8080"
-       },
-       {
-          "name":"protocol",
-          "value":"TCP,TCP"
-       },
-       {
-          "name": "ingressName",
-         "value" : "wncp-ingress-test-1"
-       },
-       {
-          "name":"ingressNamespace",
-          "value": "wncp-test-1"
-       },
-       {
-          "name":"ingressDefaultBackend",
-          "value": "wncp-fronend-service"
-       },
-       {
-          "name":"ingressDefaultBackendservicePort",
-          "value": "8080"
-       },
-       {
-          "name":"ingressBackendPaths",
-          "value": "/cloud-portal-services1/*,/cloud-portal-services2/*, /cloud-portal-services3/*"
-       },
-       {
-          "name":"ingressBackendServiceNames",
-          "value": "wncp-backend-service1,wncp-backend-service2,wncp-backend-service3"
-       },
-       {
-          "name":"ingressBackendServicePorts",
-          "value": "8082,8081,8083"
-       }
-
-    ]
- }
+   "parameter":[
+      {
+         "name":"appname",
+         "value":"wncp-backend,wncp-fronend"
+      },
+      {
+         "name":"namespace",
+         "value":"wncp-test-1,wncp-test-1"
+      },
+      {
+         "name":"replicas",
+         "value":"1,1"
+      },
+      {
+         "name":"imagepath",
+         "value":"gcr.io/wn-cloud-275704/cloud-portal-service@sha256:d44480f23dc411a38b65c95e27508a3101c743f2392b2b98455cde237433e730,gcr.io/wn-cloud-275704/cloud-portal-frontend@sha256:a43821b760dbb883e089f55c12b2a5553f4017bc812f733a1403452402026134"
+      },
+      {
+         "name":"servicename",
+         "value":"wncp-backend-service, wncp-fronend-service"
+      },
+      {
+         "name":"clusterip",
+         "value":"10.0.1.2,10.0.1.1"
+      },
+      {
+         "name":"serviceport",
+         "value":"8080,8080"
+      },
+      {
+         "name":"protocol",
+         "value":"TCP,TCP"
+      },
+      {
+         "name":"ingressName",
+         "value":"wncp-ingress-test-1"
+      },
+      {
+         "name":"ingressNamespace",
+         "value":"wncp-test-1"
+      },
+      {
+         "name":"ingressDefaultBackend",
+         "value":"wncp-fronend-service"
+      },
+      {
+         "name":"ingressDefaultBackendservicePort",
+         "value":"8080"
+      },
+      {
+         "name":"ingressBackendPaths",
+         "value":"/cloud-portal-services1/*"
+      },
+      {
+         "name":"ingressBackendServiceNames",
+         "value":"wncp-backend-service"
+      },
+      {
+         "name":"ingressBackendServicePorts",
+         "value":"8080"
+      }
+   ]
+}

@@ -83,6 +83,13 @@ pipeline {
                 }
             }
         }
+        // stage('Applying all yaml to GKE') {
+        //     steps{
+        //         sh "ls k8s/"
+        //         step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'k8s/', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+        //     }
+        // }
+
 
         // stage('Create name space GKE') {
         //     steps{
