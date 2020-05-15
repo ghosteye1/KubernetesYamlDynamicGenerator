@@ -14,6 +14,6 @@ spec:
         backend:
           serviceName: wncp-backend-service
           servicePort: 8080
-      -cus-content-
-      -cplxStrng-
+
+-cplxStrng-
         

@@ -32,22 +32,39 @@ pipeline {
                     //sh "sed -i 's/-cplxStrng-/hello:${cplxStrng}/g' ingressDynamic.yaml"
 
                     script{
-                        for (int i = 0; i < SERVERDIRS.size(); i++) {
-                            //echo "${SERVERDIRS[i]}"
-                            cplxStrng = cplxStrng + "\t"+ SERVERDIRS[i] //+ "\n"
-                        }
+                        // for (int i = 0; i < SERVERDIRS.size(); i++) {
+                        //     //echo "${SERVERDIRS[i]}"
+                        //     cplxStrng = cplxStrng + "\t"+ SERVERDIRS[i] //+ "\n"
+                        // }
 
                         
-                        texts = stringAAA.split(',')
-                        for (txt in texts) {
-                            sh "echo ${txt}"
-                        }
+                        // texts = stringAAA.split(',')
+                        // for (txt in texts) {
+                        //     sh "echo ${txt}"
+                        // }
+
+                        // texts = param1.split(',')
+                        // for (int i = 0; i < texts.size(); i++) {
+                        //     echo "param1 for loop: ${texts[i]}"
+                        //     cplxStrng = cplxStrng + "\t"+ texts[i] + "|END|" //"/\n"
+                        // }
+
+
 
                         texts = param1.split(',')
                         for (int i = 0; i < texts.size(); i++) {
                             echo "param1 for loop: ${texts[i]}"
-                            cplxStrng = cplxStrng + "\t"+ texts[i] + "|END|" //"/\n"
+                            //cplxStrng = cplxStrng + "\t"+ texts[i] + "|END|" //"/\n"
+
+                            cplxStrng = cplxStrng + "      - path: /cloud-portal-services/*" + "|END|"
+                            cplxStrng = cplxStrng + "        backend:" + "|END|"
+                            cplxStrng = cplxStrng + "          serviceName: wncp-backend-service" + "|END|"
+                            cplxStrng = cplxStrng + "          servicePort: 8080" + "|END|"
+                            cplxStrng = cplxStrng + "      -----         " + "|END|"
+
                         }
+
+
 
                         // string="QQ,WW,EE,TT"
                         // array=(echo $string | sed 's/,/\n/g')
@@ -62,7 +79,7 @@ pipeline {
 
                     // sh "sed -i 's/|END|/\n/g' ingressDynamic.yaml"
 
-                    sh "sed -i 's/END/\\n/g' ingressDynamic.yaml"
+                    sh "sed -i 's/|END|/\\n/g' ingressDynamic.yaml"
 
                     // sh "Array Split${arraString} >> ingressDynamic.yaml"
 
