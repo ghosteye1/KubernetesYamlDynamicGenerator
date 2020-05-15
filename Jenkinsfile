@@ -17,14 +17,6 @@ pipeline {
 		LOCATION = 'us-central1-c'
 		CREDENTIALS_ID = 'gke'
 
-        appname = "${appname}"
-        namespace = "${namespace}"
-        replicas = "${replicas}"
-        imagePath = "${imagepath}"
-        serviceName = "${servicename}"
-        clusterIP = "${clusterip}"
-        servicePort = "${serviceport}"
-        protocol = "${protocol}"
     }
     stages {
         stage("Checkout code") {
@@ -36,17 +28,6 @@ pipeline {
             steps {
                 sh "rm -rf k8s"
                 sh "mkdir k8s"
-                
-                script {
-                    print('appName '+env.appname)
-                    print('namespace '+env.namespace)
-                    print('replicas '+env.replicas)
-                    print('imagePath '+env.imagePath)
-                    print('serviceName '+env.serviceName)
-                    print('clusterIP '+env.clusterIP)
-                    print('servicePort '+env.servicePort)
-                    print('protocol '+env.protocol)
-                }
             }
         }
         stage('generate dynamic deployments') {
