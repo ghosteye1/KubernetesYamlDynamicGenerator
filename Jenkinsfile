@@ -62,7 +62,7 @@ pipeline {
 
                     // sh "sed -i 's/|END|/\n/g' ingressDynamic.yaml"
 
-                    sh "sed s/END/\\n/g ingressDynamic.yaml"
+                    sh "sed -i 's/END/\\n/g' ingressDynamic.yaml"
 
                     // sh "Array Split${arraString} >> ingressDynamic.yaml"
 
