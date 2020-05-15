@@ -26,6 +26,7 @@ pipeline {
                 echo 'Hello World'
 
                 echo "${datas}"
+                sh "echo ${datas} >> newyyyyml.yaml"
 
                 sh "sed -i 's/-cus-content-/hello:${env.param1}/g' ingressDynamic.yaml"
 
