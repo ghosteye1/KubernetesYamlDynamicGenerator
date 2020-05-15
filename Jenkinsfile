@@ -39,13 +39,13 @@ pipeline {
                 
 
                 script {
-                    print('appName '+env.app-name)
+                    print('appName '+env.appName)
                     print('namespace '+env.namespace)
                     print('replicas '+env.replicas)
-                    print('imagePath '+env.image-path)
-                    print('serviceName '+env.service-name)
-                    print('clusterIP '+env.cluster-ip)
-                    print('servicePort '+env.service-port)
+                    print('imagePath '+env.imagePath)
+                    print('serviceName '+env.serviceName)
+                    print('clusterIP '+env.clusterIP)
+                    print('servicePort '+env.servicePort)
                     print('protocol '+env.protocol)
                 }
             }
