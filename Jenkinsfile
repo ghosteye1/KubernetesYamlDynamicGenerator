@@ -14,12 +14,12 @@ pipeline {
     environment {
         appname = "${appname}"
         namespace = "${namespace}"
-        // replicas = "${replicas}"
-        // imagePath = "${image-path}"
-        // serviceName = "${service-name}"
-        // clusterIP = "${cluster-ip}"
-        // servicePort = "${service-port}"
-        // protocol = "${protocol}"
+        replicas = "${replicas}"
+        imagePath = "${imagepath}"
+        serviceName = "${servicename}"
+        clusterIP = "${clusterip}"
+        servicePort = "${serviceport}"
+        protocol = "${protocol}"
     }
     stages {
         stage("Checkout code") {
@@ -41,12 +41,12 @@ pipeline {
                 script {
                     print('appName '+env.appname)
                     print('namespace '+env.namespace)
-                    // print('replicas '+env.replicas)
-                    // print('imagePath '+env.imagePath)
-                    // print('serviceName '+env.serviceName)
-                    // print('clusterIP '+env.clusterIP)
-                    // print('servicePort '+env.servicePort)
-                    // print('protocol '+env.protocol)
+                    print('replicas '+env.replicas)
+                    print('imagePath '+env.imagePath)
+                    print('serviceName '+env.serviceName)
+                    print('clusterIP '+env.clusterIP)
+                    print('servicePort '+env.servicePort)
+                    print('protocol '+env.protocol)
                 }
             }
         }
