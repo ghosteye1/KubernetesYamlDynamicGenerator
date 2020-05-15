@@ -12,8 +12,8 @@ node {
 pipeline {
     agent any
     environment {
-        depappname = "${app-name}"
-        // namespace = "${namespace}"
+        // depappname = "${app-name}"
+        namespace = "${namespace}"
         // replicas = "${replicas}"
         // imagePath = "${image-path}"
         // serviceName = "${service-name}"
@@ -39,8 +39,8 @@ pipeline {
                 
 
                 script {
-                    print('appName '+env.depappname)
-                    // print('namespace '+env.namespace)
+                    // print('appName '+env.depappname)
+                    print('namespace '+env.namespace)
                     // print('replicas '+env.replicas)
                     // print('imagePath '+env.imagePath)
                     // print('serviceName '+env.serviceName)
