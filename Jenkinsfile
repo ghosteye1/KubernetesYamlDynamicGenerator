@@ -117,7 +117,7 @@ pipeline {
 
         stage('Create name space GKE') {
             steps{
-                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'k8s/namespace-test.json', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'namespace-test.json', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
             }
         } 
         stage('Applying all yaml to GKE') {
