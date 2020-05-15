@@ -5,6 +5,10 @@ stringAAA ="1,2,3,4"
 array=[]
 arraString = ""
 
+node {
+  datas = readYaml file: 'deployment.yaml'
+}
+
 pipeline {
     agent any
     environment {
@@ -20,6 +24,8 @@ pipeline {
         stage('Hello') {
             steps {
                 echo 'Hello World'
+
+                echo "${datas}"
 
                 sh "sed -i 's/-cus-content-/hello:${env.param1}/g' ingressDynamic.yaml"
 
