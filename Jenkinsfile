@@ -1,10 +1,9 @@
 SERVERDIRS = [ "DIRsxs -1" , "DIRxssxs -2" ]
 cplxStrng = "A";
 pathA = "/api/one"
-string="1,2,3,4"
+stringAAA ="1,2,3,4"
 array=[]
 arraString = ""
-string='foo|bar'
 
 pipeline {
     agent any
@@ -39,10 +38,10 @@ pipeline {
                         }
 
                         
-                        IFS='|'; set -f
-                        array=($string)
-
-                        echo "${array[0]}"
+                        texts = stringAAA.split(',')
+                        for (txt in texts) {
+                            sh "echo ${txt}"
+                        }
 
                         // string="QQ,WW,EE,TT"
                         // array=(echo $string | sed 's/,/\n/g')
