@@ -1,13 +1,4 @@
-SERVERDIRS = [ "DIRsxs-1" , "DIRxssxs-2" ]
 cplxStrng = "";
-pathA = "/api/one"
-stringAAA ="1,2,3,4"
-array=[]
-arraString = ""
-
-// node {
-//   datas = readYaml file: 'deployment.yaml'
-// }
 
 pipeline {
     agent any
@@ -16,7 +7,6 @@ pipeline {
 		CLUSTER_NAME = 'wn-cloud-portal-test'
 		LOCATION = 'us-central1-c'
 		CREDENTIALS_ID = 'gke'
-
     }
     stages {
         stage("Checkout code") {
@@ -24,7 +14,7 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Make folder for deployments scripts yaml') {
+        stage('Make folder for deployments scripts') {
             steps {
                 sh "rm -rf k8s"
                 sh "mkdir k8s"
@@ -61,11 +51,10 @@ pipeline {
                 }
             }
         }
-
         stage('generate ingress') {
             steps {
                 script {
-                    echo "ingressName: ${ingressName}"
+                    echo "IngressName: ${ingressName}"
 
                     sh "cp ingress.yaml k8s/ingress.yaml"
 
@@ -87,21 +76,10 @@ pipeline {
                         cplxStrng = cplxStrng + "          serviceName:" + ingressBackendServiceNamesAry[i] + "|END|"
                         cplxStrng = cplxStrng + "          servicePort:" + ingressBackendServicePortsAry[i] + "|END|"
                         
-
                     }
 
                     sh "sed -i 's!-ingressServicePathsData-!${cplxStrng}!g' k8s/ingress.yaml"
                     sh "sed -i 's/|END|/\\n/g' k8s/ingress.yaml"
-
-                    // for (int j = 0; j < ingressBackendPathsAry.size(); j++) {
-                    //     echo "${ingressBackendPathsAry[i]}"
-                        
-                        
-
-                    //     sh "sed -i 's!-cplxStrng-!${cplxStrng}!g' k8s/${SERVERDIRS[j]}.yaml"
-
-                    //     sh "sed -i 's/|END|/\\n/g' k8s/${SERVERDIRS[j]}.yaml"
-                    // }
                 }
             }
         }
