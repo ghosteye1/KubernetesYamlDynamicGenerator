@@ -46,7 +46,7 @@ pipeline {
                         texts = param1.split(',')
                         for (int i = 0; i < texts.size(); i++) {
                             echo "param1 for loop: ${texts[i]}"
-                            cplxStrng = cplxStrng + "\t"+ texts[i] + "/\n"
+                            cplxStrng = cplxStrng + "\t"+ texts[i] + "|END|" //"/\n"
                         }
 
                         // string="QQ,WW,EE,TT"
@@ -59,6 +59,8 @@ pipeline {
                     }
 
                     sh "sed -i 's/-cplxStrng-/hello:${cplxStrng}/g' ingressDynamic.yaml"
+
+                    sh "sed -i 's/|END|/\n/g' ingressDynamic.yaml"
 
                     // sh "Array Split${arraString} >> ingressDynamic.yaml"
 
