@@ -50,7 +50,7 @@
       },
       {
          "name":"ingressBackendPaths",
-         "value":"/cloud-portal-services1/*"
+         "value":"/cloud-portal-services/*"
       },
       {
          "name":"ingressBackendServiceNames",
