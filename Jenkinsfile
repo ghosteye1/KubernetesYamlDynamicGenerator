@@ -5,9 +5,9 @@ stringAAA ="1,2,3,4"
 array=[]
 arraString = ""
 
-node {
-  datas = readYaml file: 'deployment.yaml'
-}
+// node {
+//   datas = readYaml file: 'deployment.yaml'
+// }
 
 pipeline {
     agent any

@@ -1,0 +1,10 @@
+{
+    "apiVersion": "v1",
+    "kind": "Namespace",
+    "metadata": {
+      "name": "wncp-test-1",
+      "labels": {
+        "name": "wncp-test-1"
+      }
+    }
+  }
