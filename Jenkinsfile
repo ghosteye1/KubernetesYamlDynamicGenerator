@@ -67,24 +67,36 @@ pipeline {
                 script {
                     echo "ingressName: ${ingressName}"
 
-                    // ingressPathArray = ingressPaths.split(',')
+                    sh "cp ingress.yaml k8s/ingress.yaml"
 
-                    // for (int j = 0; j < SERVERDIRS.size(); j++) {
-                    //     //echo "${SERVERDIRS[i]}"
-                    //     sh "cp ingressDynamic.yaml k8s/${SERVERDIRS[j]}.yaml"
+                    sh "sed -i 's!-ingressName-!${ingressName}!g' k8s/ingress.yaml"
+                    sh "sed -i 's!-ingressNamespace-!${ingressNamespace}!g' k8s/ingress.yaml"
+                    sh "sed -i 's!-ingressDefaultBackend-!${ingressDefaultBackend}!g' k8s/ingress.yaml"
+                    sh "sed -i 's!-ingressDefaultBackendservicePort-!${ingressDefaultBackendservicePort}!g' k8s/ingress.yaml"
 
-                    //     cplxStrng = ""
-                    //     for (int i = 0; i < ingressPathArray.size(); i++) {
-                    //         echo "ingressPathArray : ${ingressPathArray[i]}"
-                    //         //cplxStrng = cplxStrng + "\t"+ texts[i] + "|END|" //"/\n"
+                    ingressBackendPathsAry = ingressBackendPaths.split(',')
+                    ingressBackendServiceNamesAry = ingressBackendServiceNames.split(',')
+                    ingressBackendServicePortsAry = ingressBackendServicePorts.split(',')
 
-                    //         cplxStrng = cplxStrng + "      - path:" + ingressPathArray[i] + "|END|"
-                    //         cplxStrng = cplxStrng + "        backend:" + "|END|"
-                    //         cplxStrng = cplxStrng + "          serviceName: wncp-backend-service" + "|END|"
-                    //         cplxStrng = cplxStrng + "          servicePort: 8080" + "|END|"
-                    //         cplxStrng = cplxStrng + "      -----         " + "|END|"
+                    cplxStrng = ""
+                    for (int i = 0; i < ingressBackendPathsAry.size(); i++) {
+                        echo "ingressPathArray : ${ingressBackendPathsAry[i]}"
+                        
+                        cplxStrng = cplxStrng + "      - path:" + ingressBackendPathsAry[i] + "|END|"
+                        cplxStrng = cplxStrng + "        backend:" + "|END|"
+                        cplxStrng = cplxStrng + "          serviceName:" + ingressBackendServiceNamesAry[i] + "|END|"
+                        cplxStrng = cplxStrng + "          servicePort:" + ingressBackendServicePortsAry[i] + "|END|"
+                        cplxStrng = cplxStrng + "      -----         " + "|END|"
 
-                    //     }
+                    }
+
+                    sh "sed -i 's!-ingressServicePathsData-!${cplxStrng}!g' k8s/ingress.yaml"
+                    sh "sed -i 's/|END|/\\n/g' k8s/ingress.yaml"
+
+                    // for (int j = 0; j < ingressBackendPathsAry.size(); j++) {
+                    //     echo "${ingressBackendPathsAry[i]}"
+                        
+                        
 
                     //     sh "sed -i 's!-cplxStrng-!${cplxStrng}!g' k8s/${SERVERDIRS[j]}.yaml"
 
