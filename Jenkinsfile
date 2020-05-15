@@ -29,7 +29,7 @@ pipeline {
         }
         stage ('Looping') {
                 steps	{
-                    sh "sed -i 's/-cplxStrng-/hello:${cplxStrng}/g' ingressDynamic.yaml"
+                    //sh "sed -i 's/-cplxStrng-/hello:${cplxStrng}/g' ingressDynamic.yaml"
 
                     script{
                         for (int i = 0; i < SERVERDIRS.size(); i++) {
@@ -46,7 +46,7 @@ pipeline {
                         texts = param1.split(',')
                         for (int i = 0; i < texts.size(); i++) {
                             echo "param1 for loop: ${texts[i]}"
-                            //cplxStrng = cplxStrng + "\t"+ texts[i] //+ "\n"
+                            cplxStrng = cplxStrng + "/\t"+ texts[i] + "/\n"
                         }
 
                         // string="QQ,WW,EE,TT"
@@ -57,6 +57,8 @@ pipeline {
                         //     arraString = arraString + "\t"+ array[i] //+ "\n"
                         // }
                     }
+
+                    sh "sed -i 's/-cplxStrng-/hello:${cplxStrng}/g' ingressDynamic.yaml"
 
                     // sh "Array Split${arraString} >> ingressDynamic.yaml"
 
