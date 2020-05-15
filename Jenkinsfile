@@ -26,6 +26,7 @@ pipeline {
 
                 script {
                     print('param '+env.param1)
+                    print('ingressPaths '+env.ingressPaths)
                 }
             }
         }
