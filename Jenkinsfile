@@ -43,8 +43,9 @@ pipeline {
                             sh "echo ${txt}"
                         }
 
+                        texts = param1.split(',')
                         for (int i = 0; i < texts.size(); i++) {
-                            echo "Arra for loop: ${texts[i]}"
+                            echo "param1 for loop: ${texts[i]}"
                             //cplxStrng = cplxStrng + "\t"+ texts[i] //+ "\n"
                         }
 
