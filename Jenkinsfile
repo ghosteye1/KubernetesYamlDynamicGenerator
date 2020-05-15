@@ -86,7 +86,7 @@ pipeline {
                         cplxStrng = cplxStrng + "        backend:" + "|END|"
                         cplxStrng = cplxStrng + "          serviceName:" + ingressBackendServiceNamesAry[i] + "|END|"
                         cplxStrng = cplxStrng + "          servicePort:" + ingressBackendServicePortsAry[i] + "|END|"
-                        cplxStrng = cplxStrng + "      -----         " + "|END|"
+                        cplxStrng = cplxStrng + "|END|"
 
                     }
 
