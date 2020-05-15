@@ -28,6 +28,7 @@ pipeline {
                 echo "${datas}"
                 sh "echo ${datas} >> newyyyyml.yaml"
 
+                sh "mkdir k8s"
                 sh "cp ingressDynamic.yaml k8s/ingressDynamic2.yaml"
 
                 script {
