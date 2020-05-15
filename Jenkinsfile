@@ -58,9 +58,9 @@ pipeline {
 
                             // cplxStrng = cplxStrng + "      - path: /cloud-portal-services/" + "|END|"
                             cplxStrng = cplxStrng + "        backend:" + "|END|"
-                            // cplxStrng = cplxStrng + "          serviceName: wncp-backend-service" + "|END|"
-                            // cplxStrng = cplxStrng + "          servicePort: 8080" + "|END|"
-                            // cplxStrng = cplxStrng + "      -----         " + "|END|"
+                            cplxStrng = cplxStrng + "          serviceName: wncp-backend-service" + "|END|"
+                            cplxStrng = cplxStrng + "          servicePort: 8080" + "|END|"
+                            cplxStrng = cplxStrng + "      -----         " + "|END|"
 
                         }
 
