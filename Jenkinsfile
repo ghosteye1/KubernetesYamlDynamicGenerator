@@ -12,6 +12,11 @@ node {
 pipeline {
     agent any
     environment {
+        PROJECT_ID = 'wn-cloud-275704'
+		CLUSTER_NAME = 'wn-cloud-portal-test'
+		LOCATION = 'us-central1-c'
+		CREDENTIALS_ID = 'gke'
+
         appname = "${appname}"
         namespace = "${namespace}"
         replicas = "${replicas}"
