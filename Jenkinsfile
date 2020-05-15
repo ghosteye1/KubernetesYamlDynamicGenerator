@@ -13,13 +13,13 @@ pipeline {
     agent any
     environment {
         depappname = "${app-name}"
-        namespace = "${namespace}"
-        replicas = "${replicas}"
-        imagePath = "${image-path}"
-        serviceName = "${service-name}"
-        clusterIP = "${cluster-ip}"
-        servicePort = "${service-port}"
-        protocol = "${protocol}"
+        // namespace = "${namespace}"
+        // replicas = "${replicas}"
+        // imagePath = "${image-path}"
+        // serviceName = "${service-name}"
+        // clusterIP = "${cluster-ip}"
+        // servicePort = "${service-port}"
+        // protocol = "${protocol}"
     }
     stages {
         stage("Checkout code") {
