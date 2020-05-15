@@ -1,7 +1,7 @@
 {
     "parameter":[
        {
-          "name":"app-name",
+          "name":"appname",
           "value":"wncp-backend,wncp-fronend"
        },
        {
