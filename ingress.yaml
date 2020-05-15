@@ -1,12 +1,12 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: wncp-ingress-test-1
-  namespace: wncp-test-1
+  name: -ingressName-
+  namespace: -ingressNamespace-
 spec:
   backend:
-    serviceName: wncp-fronend-service
-    servicePort: 8080
+    serviceName: -ingressDefaultBackend-
+    servicePort: -ingressDefaultBackendservicePort-
   rules:
   - http:
       paths:
@@ -14,6 +14,6 @@ spec:
         backend:
           serviceName: wncp-backend-service
           servicePort: 8080
+-ingressServicePathsData-
 
--cplxStrng-
         

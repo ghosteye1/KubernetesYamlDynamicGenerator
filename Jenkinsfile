@@ -81,49 +81,49 @@ pipeline {
             }
         }
 
-        // stage('generate dynamic deployments') {
-        //     steps {
-        //         script {
-        //             ingressPathArray = ingressPaths.split(',')
+        stage('generate ingress') {
+            steps {
+                script {
+                    echo "ingressName: ${ingressName}"
 
-        //             for (int j = 0; j < SERVERDIRS.size(); j++) {
-        //                 //echo "${SERVERDIRS[i]}"
-        //                 sh "cp ingressDynamic.yaml k8s/${SERVERDIRS[j]}.yaml"
+                    // ingressPathArray = ingressPaths.split(',')
 
-        //                 cplxStrng = ""
-        //                 for (int i = 0; i < ingressPathArray.size(); i++) {
-        //                     echo "ingressPathArray : ${ingressPathArray[i]}"
-        //                     //cplxStrng = cplxStrng + "\t"+ texts[i] + "|END|" //"/\n"
+                    // for (int j = 0; j < SERVERDIRS.size(); j++) {
+                    //     //echo "${SERVERDIRS[i]}"
+                    //     sh "cp ingressDynamic.yaml k8s/${SERVERDIRS[j]}.yaml"
 
-        //                     cplxStrng = cplxStrng + "      - path:" + ingressPathArray[i] + "|END|"
-        //                     cplxStrng = cplxStrng + "        backend:" + "|END|"
-        //                     cplxStrng = cplxStrng + "          serviceName: wncp-backend-service" + "|END|"
-        //                     cplxStrng = cplxStrng + "          servicePort: 8080" + "|END|"
-        //                     cplxStrng = cplxStrng + "      -----         " + "|END|"
+                    //     cplxStrng = ""
+                    //     for (int i = 0; i < ingressPathArray.size(); i++) {
+                    //         echo "ingressPathArray : ${ingressPathArray[i]}"
+                    //         //cplxStrng = cplxStrng + "\t"+ texts[i] + "|END|" //"/\n"
 
-        //                 }
+                    //         cplxStrng = cplxStrng + "      - path:" + ingressPathArray[i] + "|END|"
+                    //         cplxStrng = cplxStrng + "        backend:" + "|END|"
+                    //         cplxStrng = cplxStrng + "          serviceName: wncp-backend-service" + "|END|"
+                    //         cplxStrng = cplxStrng + "          servicePort: 8080" + "|END|"
+                    //         cplxStrng = cplxStrng + "      -----         " + "|END|"
 
-        //                 sh "sed -i 's!-cplxStrng-!${cplxStrng}!g' k8s/${SERVERDIRS[j]}.yaml"
+                    //     }
 
-        //                 sh "sed -i 's/|END|/\\n/g' k8s/${SERVERDIRS[j]}.yaml"
-        //             }
-        //         }
-        //     }
-        // }
+                    //     sh "sed -i 's!-cplxStrng-!${cplxStrng}!g' k8s/${SERVERDIRS[j]}.yaml"
+
+                    //     sh "sed -i 's/|END|/\\n/g' k8s/${SERVERDIRS[j]}.yaml"
+                    // }
+                }
+            }
+        }
 
         // stage('Create name space GKE') {
         //     steps{
         //         step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'namespace-create.json', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
         //     }
         // } 
-        stage('Applying all yaml to GKE') {
-            steps{
-                sh "ls k8s/"
-                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'k8s/', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
-                // step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'k8s/wncp-fronend.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
-                // step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'multi-deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
-            }
-        }
+        // stage('Applying all yaml to GKE') {
+        //     steps{
+        //         sh "ls k8s/"
+        //         step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'k8s/', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+        //     }
+        // }
 
         // stage ('Looping') {
         //         steps	{

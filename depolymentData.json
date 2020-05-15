@@ -31,6 +31,35 @@
        {
           "name":"protocol",
           "value":"TCP,TCP"
+       },
+       {
+          "name": "ingressName",
+         "value" : "wncp-ingress-test-1"
+       },
+       {
+          "name":"ingressNamespace",
+          "value": "wncp-test-1"
+       },
+       {
+          "name":"ingressDefaultBackend",
+          "value": "wncp-fronend-service"
+       },
+       {
+          "name":"ingressDefaultBackendservicePort",
+          "value": "8080"
+       },
+       {
+          "name":"ingressBackendPaths",
+          "value": "/cloud-portal-services1/*,/cloud-portal-services2/*, /cloud-portal-services3/*"
+       },
+       {
+          "name":"ingressBackendServiceNames",
+          "value": "wncp-backend-service1,wncp-backend-service2,wncp-backend-service3"
+       },
+       {
+          "name":"ingressBackendServicePorts",
+          "value": "8082,8081,8083"
        }
+
     ]
  }
