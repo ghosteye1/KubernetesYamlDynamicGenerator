@@ -21,9 +21,9 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Hello') {
+        stage('Make folder for deployments scripts yaml') {
             steps {
-                echo 'Hello World'
+                //echo 'Hello World'
 
                 // echo "${datas}"
                 // sh "echo ${datas} >> newyyyyml.yaml"
@@ -68,72 +68,72 @@ pipeline {
             }
         }
 
-        stage ('Looping') {
-                steps	{
-                    //sh "sed -i 's/-cplxStrng-/hello:${cplxStrng}/g' ingressDynamic.yaml"
+        // stage ('Looping') {
+        //         steps	{
+        //             //sh "sed -i 's/-cplxStrng-/hello:${cplxStrng}/g' ingressDynamic.yaml"
 
-                    script{
-                        // for (int i = 0; i < SERVERDIRS.size(); i++) {
-                        //     //echo "${SERVERDIRS[i]}"
-                        //     // cplxStrng = cplxStrng + "\t"+ SERVERDIRS[i] //+ "\n"
-                        //     sh "cp ingressDynamic.yaml k8s/${SERVERDIRS[i]}.yaml"
-                        // }
+        //             script{
+        //                 // for (int i = 0; i < SERVERDIRS.size(); i++) {
+        //                 //     //echo "${SERVERDIRS[i]}"
+        //                 //     // cplxStrng = cplxStrng + "\t"+ SERVERDIRS[i] //+ "\n"
+        //                 //     sh "cp ingressDynamic.yaml k8s/${SERVERDIRS[i]}.yaml"
+        //                 // }
 
                         
-                        // texts = stringAAA.split(',')
-                        // for (txt in texts) {
-                        //     sh "echo ${txt}"
-                        // }
+        //                 // texts = stringAAA.split(',')
+        //                 // for (txt in texts) {
+        //                 //     sh "echo ${txt}"
+        //                 // }
 
-                        // texts = param1.split(',')
-                        // for (int i = 0; i < texts.size(); i++) {
-                        //     echo "param1 for loop: ${texts[i]}"
-                        //     cplxStrng = cplxStrng + "\t"+ texts[i] + "|END|" //"/\n"
-                        // }
-
-
-
-                        ingressPathArray = ingressPaths.split(',')
-                        for (int i = 0; i < ingressPathArray.size(); i++) {
-                            echo "ingressPathArray : ${ingressPathArray[i]}"
-                            //cplxStrng = cplxStrng + "\t"+ texts[i] + "|END|" //"/\n"
-
-                            cplxStrng = cplxStrng + "      - path:" + ingressPathArray[i] + "|END|"
-                            cplxStrng = cplxStrng + "        backend:" + "|END|"
-                            cplxStrng = cplxStrng + "          serviceName: wncp-backend-service" + "|END|"
-                            cplxStrng = cplxStrng + "          servicePort: 8080" + "|END|"
-                            cplxStrng = cplxStrng + "      -----         " + "|END|"
-
-                        }
+        //                 // texts = param1.split(',')
+        //                 // for (int i = 0; i < texts.size(); i++) {
+        //                 //     echo "param1 for loop: ${texts[i]}"
+        //                 //     cplxStrng = cplxStrng + "\t"+ texts[i] + "|END|" //"/\n"
+        //                 // }
 
 
 
-                        // string="QQ,WW,EE,TT"
-                        // array=(echo $string | sed 's/,/\n/g')
+        //                 ingressPathArray = ingressPaths.split(',')
+        //                 for (int i = 0; i < ingressPathArray.size(); i++) {
+        //                     echo "ingressPathArray : ${ingressPathArray[i]}"
+        //                     //cplxStrng = cplxStrng + "\t"+ texts[i] + "|END|" //"/\n"
 
-                        // for (int i = 0; i < array.size(); i++) {
-                        //     //echo "${SERVERDIRS[i]}"
-                        //     arraString = arraString + "\t"+ array[i] //+ "\n"
-                        // }
-                    }
+        //                     cplxStrng = cplxStrng + "      - path:" + ingressPathArray[i] + "|END|"
+        //                     cplxStrng = cplxStrng + "        backend:" + "|END|"
+        //                     cplxStrng = cplxStrng + "          serviceName: wncp-backend-service" + "|END|"
+        //                     cplxStrng = cplxStrng + "          servicePort: 8080" + "|END|"
+        //                     cplxStrng = cplxStrng + "      -----         " + "|END|"
 
-                    sh "sed -i 's!-cplxStrng-!${cplxStrng}!g' ingressDynamic.yaml"
+        //                 }
 
-                    // sh "sed -i 's/|END|/\n/g' ingressDynamic.yaml"
 
-                    sh "sed -i 's/|END|/\\n/g' ingressDynamic.yaml"
 
-                    // sh "Array Split${arraString} >> ingressDynamic.yaml"
+        //                 // string="QQ,WW,EE,TT"
+        //                 // array=(echo $string | sed 's/,/\n/g')
 
-                    //sh "echo version := 1.0.${cplxStrng} >> ingressDynamic.yaml"
+        //                 // for (int i = 0; i < array.size(); i++) {
+        //                 //     //echo "${SERVERDIRS[i]}"
+        //                 //     arraString = arraString + "\t"+ array[i] //+ "\n"
+        //                 // }
+        //             }
+
+        //             sh "sed -i 's!-cplxStrng-!${cplxStrng}!g' ingressDynamic.yaml"
+
+        //             // sh "sed -i 's/|END|/\n/g' ingressDynamic.yaml"
+
+        //             sh "sed -i 's/|END|/\\n/g' ingressDynamic.yaml"
+
+        //             // sh "Array Split${arraString} >> ingressDynamic.yaml"
+
+        //             //sh "echo version := 1.0.${cplxStrng} >> ingressDynamic.yaml"
                     
 
-                    //sh "printf '\t\t\t- path: %s\n' '${pathA}' >> ingressDynamic.yaml"
-                    //sh "printf '\t\t\t- path: %s\n' '${pathA}' >> ingressDynamic.yaml"
+        //             //sh "printf '\t\t\t- path: %s\n' '${pathA}' >> ingressDynamic.yaml"
+        //             //sh "printf '\t\t\t- path: %s\n' '${pathA}' >> ingressDynamic.yaml"
 
-                    //sh "printf '%s\t%s\n' 'Data1' '${cplxStrng}' >> ingressDynamic.yaml"
-                }
-        }     
+        //             //sh "printf '%s\t%s\n' 'Data1' '${cplxStrng}' >> ingressDynamic.yaml"
+        //         }
+        // }     
         // stage('Create name space GKE') {
         //     steps{
         //         //sh "sed -i 's/hello:latest/hello:${env.BUILD_ID}/g' deployment.yaml"
