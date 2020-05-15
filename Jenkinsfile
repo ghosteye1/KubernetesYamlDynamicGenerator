@@ -56,7 +56,7 @@ pipeline {
                             echo "param1 for loop: ${texts[i]}"
                             //cplxStrng = cplxStrng + "\t"+ texts[i] + "|END|" //"/\n"
 
-                            cplxStrng = cplxStrng + "      - path: /cloud-portal-services/" + "|END|"
+                            cplxStrng = cplxStrng + "      - path: /cloud-portal-services/*" + "|END|"
                             cplxStrng = cplxStrng + "        backend:" + "|END|"
                             cplxStrng = cplxStrng + "          serviceName: wncp-backend-service" + "|END|"
                             cplxStrng = cplxStrng + "          servicePort: 8080" + "|END|"
