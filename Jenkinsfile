@@ -14,87 +14,87 @@ pipeline {
                 checkout scm
             }
         }
-        // stage('Make folder for deployments scripts') {
-        //     steps {
-        //         sh "rm -rf k8s"
-        //         sh "mkdir k8s"
-        //     }
-        // }
-        // stage('generate dynamic deployments') {
-        //     steps {
-        //         script {
-        //             appname = appname.split(',')
-        //             namespace = namespace.split(',')
-        //             replicas = replicas.split(',')
-        //             imagepath = imagepath.split(',')
-        //             servicename = servicename.split(',')
-        //             clusterip = clusterip.split(',')
-        //             serviceport = serviceport.split(',')
-        //             protocol = protocol.split(',')
-
-        //             for (int j = 0; j < appname.size(); j++) {
-        //                 echo "${appname[j]}"
-        //                 sh "cp deployment.yaml k8s/${appname[j]}.yaml"
-        //                 sh "cp namespace-create.json k8s/namespace${j}.json"
-
-        //                 sh "sed -i 's!-app-name-!${appname[j]}!g' k8s/${appname[j]}.yaml"
-        //                 sh "sed -i 's!-name-space-!${namespace[j]}!g' k8s/${appname[j]}.yaml"
-        //                 sh "sed -i 's!-repli-cas-!${replicas[j]}!g' k8s/${appname[j]}.yaml"
-        //                 sh "sed -i 's!-image-path-!${imagepath[j]}!g' k8s/${appname[j]}.yaml"
-        //                 sh "sed -i 's!-service-name-!${servicename[j]}!g' k8s/${appname[j]}.yaml"
-        //                 sh "sed -i 's!-cluster-ip-!${clusterip[j]}!g' k8s/${appname[j]}.yaml"
-        //                 sh "sed -i 's!-service-port-!${serviceport[j]}!g' k8s/${appname[j]}.yaml"
-        //                 sh "sed -i 's!-proto-col-!${protocol[j]}!g' k8s/${appname[j]}.yaml"
-                        
-        //                 sh "sed -i 's!-name-space-!${namespace[j]}!g' k8s/namespace${j}.json"
-        //             }
-        //         }
-        //     }
-        // }
-        // stage('generate ingress') {
-        //     steps {
-        //         script {
-        //             echo "IngressName: ${ingressName}"
-
-        //             sh "cp ingress.yaml k8s/ingress.yaml"
-
-        //             sh "sed -i 's!-ingressName-!${ingressName}!g' k8s/ingress.yaml"
-        //             sh "sed -i 's!-ingressNamespace-!${ingressNamespace}!g' k8s/ingress.yaml"
-        //             sh "sed -i 's!-ingressDefaultBackend-!${ingressDefaultBackend}!g' k8s/ingress.yaml"
-        //             sh "sed -i 's!-ingressDefaultBackendservicePort-!${ingressDefaultBackendservicePort}!g' k8s/ingress.yaml"
-
-        //             ingressBackendPathsAry = ingressBackendPaths.split(',')
-        //             ingressBackendServiceNamesAry = ingressBackendServiceNames.split(',')
-        //             ingressBackendServicePortsAry = ingressBackendServicePorts.split(',')
-
-        //             cplxStrng = ""
-        //             for (int i = 0; i < ingressBackendPathsAry.size(); i++) {
-        //                 echo "ingressPathArray : ${ingressBackendPathsAry[i]}"
-                        
-        //                 cplxStrng = cplxStrng + "      - backend:" + "|END|"
-        //                 cplxStrng = cplxStrng + "          serviceName:" + ingressBackendServiceNamesAry[i] + "|END|"
-        //                 cplxStrng = cplxStrng + "          servicePort:" + ingressBackendServicePortsAry[i] + "|END|"
-        //                 cplxStrng = cplxStrng + "        path:" + ingressBackendPathsAry[i] + "|END|"
-                        
-        //             }
-
-        //             sh "sed -i 's!-ingressServicePathsData-!${cplxStrng}!g' k8s/ingress.yaml"
-        //             sh "sed -i 's/|END|/\\n/g' k8s/ingress.yaml"
-        //         }
-        //     }
-        // }
-        // stage('Applying all yaml to GKE') {
-        //     steps{
-        //         sh "ls k8s/"
-        //         step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'k8s/', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
-        //     }
-        // }
-
-        stage('Create Ingress test') {
-            steps{
-                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'ingressTest.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+        stage('Make folder for deployments scripts') {
+            steps {
+                sh "rm -rf k8s"
+                sh "mkdir k8s"
             }
-        } 
+        }
+        stage('generate dynamic deployments') {
+            steps {
+                script {
+                    appname = appname.split(',')
+                    namespace = namespace.split(',')
+                    replicas = replicas.split(',')
+                    imagepath = imagepath.split(',')
+                    servicename = servicename.split(',')
+                    clusterip = clusterip.split(',')
+                    serviceport = serviceport.split(',')
+                    protocol = protocol.split(',')
+
+                    for (int j = 0; j < appname.size(); j++) {
+                        echo "${appname[j]}"
+                        sh "cp deployment.yaml k8s/${appname[j]}.yaml"
+                        sh "cp namespace-create.json k8s/namespace${j}.json"
+
+                        sh "sed -i 's!-app-name-!${appname[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-name-space-!${namespace[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-repli-cas-!${replicas[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-image-path-!${imagepath[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-service-name-!${servicename[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-cluster-ip-!${clusterip[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-service-port-!${serviceport[j]}!g' k8s/${appname[j]}.yaml"
+                        sh "sed -i 's!-proto-col-!${protocol[j]}!g' k8s/${appname[j]}.yaml"
+                        
+                        sh "sed -i 's!-name-space-!${namespace[j]}!g' k8s/namespace${j}.json"
+                    }
+                }
+            }
+        }
+        stage('generate ingress') {
+            steps {
+                script {
+                    echo "IngressName: ${ingressName}"
+
+                    sh "cp ingress.yaml k8s/ingress.yaml"
+
+                    sh "sed -i 's!-ingressName-!${ingressName}!g' k8s/ingress.yaml"
+                    sh "sed -i 's!-ingressNamespace-!${ingressNamespace}!g' k8s/ingress.yaml"
+                    sh "sed -i 's!-ingressDefaultBackend-!${ingressDefaultBackend}!g' k8s/ingress.yaml"
+                    sh "sed -i 's!-ingressDefaultBackendservicePort-!${ingressDefaultBackendservicePort}!g' k8s/ingress.yaml"
+
+                    ingressBackendPathsAry = ingressBackendPaths.split(',')
+                    ingressBackendServiceNamesAry = ingressBackendServiceNames.split(',')
+                    ingressBackendServicePortsAry = ingressBackendServicePorts.split(',')
+
+                    cplxStrng = ""
+                    for (int i = 0; i < ingressBackendPathsAry.size(); i++) {
+                        echo "ingressPathArray : ${ingressBackendPathsAry[i]}"
+                        
+                        cplxStrng = cplxStrng + "      - backend:" + "|END|"
+                        cplxStrng = cplxStrng + "          serviceName: " + ingressBackendServiceNamesAry[i] + "|END|"
+                        cplxStrng = cplxStrng + "          servicePort: " + ingressBackendServicePortsAry[i] + "|END|"
+                        cplxStrng = cplxStrng + "        path: " + ingressBackendPathsAry[i] + "|END|"
+                        
+                    }
+
+                    sh "sed -i 's!-ingressServicePathsData-!${cplxStrng}!g' k8s/ingress.yaml"
+                    sh "sed -i 's/|END|/\\n/g' k8s/ingress.yaml"
+                }
+            }
+        }
+        stage('Applying all yaml to GKE') {
+            steps{
+                sh "ls k8s/"
+                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'k8s/', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+            }
+        }
+
+        // stage('Create Ingress test') {
+        //     steps{
+        //         step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'ingressTest.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+        //     }
+        // } 
 
         // stage('Create name space GKE') {
         //     steps{
