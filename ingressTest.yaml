@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: wncp-ingress-test-1
+  namespace: wncp-test-1
+spec:
+  backend:
+    serviceName: wncp-fronend-service
+    servicePort: 8080
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: wncp-backend-service
+          servicePort: 8080
+        path: /cloud-portal-services/*
