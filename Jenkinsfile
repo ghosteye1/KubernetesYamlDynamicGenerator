@@ -1,4 +1,4 @@
-SERVERDIRS = [ "DIRsxs -1" , "DIRxssxs -2" ]
+SERVERDIRS = [ "DIRsxs-1" , "DIRxssxs-2" ]
 cplxStrng = "";
 pathA = "/api/one"
 stringAAA ="1,2,3,4"
@@ -25,12 +25,12 @@ pipeline {
             steps {
                 echo 'Hello World'
 
-                echo "${datas}"
-                sh "echo ${datas} >> newyyyyml.yaml"
+                // echo "${datas}"
+                // sh "echo ${datas} >> newyyyyml.yaml"
 
                 sh "rm -rf k8s"
                 sh "mkdir k8s"
-                sh "cp ingressDynamic.yaml k8s/ingressDynamic3.yaml"
+                
 
                 script {
                     print('param '+env.param1)
@@ -43,10 +43,11 @@ pipeline {
                     //sh "sed -i 's/-cplxStrng-/hello:${cplxStrng}/g' ingressDynamic.yaml"
 
                     script{
-                        // for (int i = 0; i < SERVERDIRS.size(); i++) {
-                        //     //echo "${SERVERDIRS[i]}"
-                        //     cplxStrng = cplxStrng + "\t"+ SERVERDIRS[i] //+ "\n"
-                        // }
+                        for (int i = 0; i < SERVERDIRS.size(); i++) {
+                            //echo "${SERVERDIRS[i]}"
+                            // cplxStrng = cplxStrng + "\t"+ SERVERDIRS[i] //+ "\n"
+                            sh "cp ingressDynamic.yaml k8s/${SERVERDIRS[i]}.yaml"
+                        }
 
                         
                         // texts = stringAAA.split(',')
