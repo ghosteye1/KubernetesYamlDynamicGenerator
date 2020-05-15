@@ -63,7 +63,7 @@ pipeline {
                     protocol = protocol.split(',')
 
                     for (int j = 0; j < appname.size(); j++) {
-                        echo "${appname[i]}"
+                        echo "${appname[j]}"
                         sh "cp deployment.yaml k8s/${appname[j]}.yaml"
 
                         // cplxStrng = ""
