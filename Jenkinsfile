@@ -75,7 +75,7 @@ pipeline {
                         sh "sed -i 's!-service-port-!${serviceport[j]}!g' k8s/${appname[j]}.yaml"
                         sh "sed -i 's!-proto-col-!${protocol[j]}!g' k8s/${appname[j]}.yaml"
                         
-                        sh "sed -i 's!-name-space-!${namespace[j]}!g' k8s/${appname[j]}-namespace.json"
+                        sh "sed -i 's!-name-space-!${namespace[j]}!g' k8s/namespace${j}.json"
                     }
                 }
             }
