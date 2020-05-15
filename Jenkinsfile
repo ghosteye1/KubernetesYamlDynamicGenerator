@@ -28,8 +28,9 @@ pipeline {
                 echo "${datas}"
                 sh "echo ${datas} >> newyyyyml.yaml"
 
+                sh "rm -rf k8s"
                 sh "mkdir k8s"
-                sh "cp ingressDynamic.yaml k8s/ingressDynamic2.yaml"
+                sh "cp ingressDynamic.yaml k8s/ingressDynamic3.yaml"
 
                 script {
                     print('param '+env.param1)
