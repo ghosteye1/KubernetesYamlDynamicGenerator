@@ -79,35 +79,35 @@ pipeline {
             }
         }
 
-        stage('generate dynamic deployments') {
-            steps {
-                script {
-                    ingressPathArray = ingressPaths.split(',')
+        // stage('generate dynamic deployments') {
+        //     steps {
+        //         script {
+        //             ingressPathArray = ingressPaths.split(',')
 
-                    for (int j = 0; j < SERVERDIRS.size(); j++) {
-                        //echo "${SERVERDIRS[i]}"
-                        sh "cp ingressDynamic.yaml k8s/${SERVERDIRS[j]}.yaml"
+        //             for (int j = 0; j < SERVERDIRS.size(); j++) {
+        //                 //echo "${SERVERDIRS[i]}"
+        //                 sh "cp ingressDynamic.yaml k8s/${SERVERDIRS[j]}.yaml"
 
-                        cplxStrng = ""
-                        for (int i = 0; i < ingressPathArray.size(); i++) {
-                            echo "ingressPathArray : ${ingressPathArray[i]}"
-                            //cplxStrng = cplxStrng + "\t"+ texts[i] + "|END|" //"/\n"
+        //                 cplxStrng = ""
+        //                 for (int i = 0; i < ingressPathArray.size(); i++) {
+        //                     echo "ingressPathArray : ${ingressPathArray[i]}"
+        //                     //cplxStrng = cplxStrng + "\t"+ texts[i] + "|END|" //"/\n"
 
-                            cplxStrng = cplxStrng + "      - path:" + ingressPathArray[i] + "|END|"
-                            cplxStrng = cplxStrng + "        backend:" + "|END|"
-                            cplxStrng = cplxStrng + "          serviceName: wncp-backend-service" + "|END|"
-                            cplxStrng = cplxStrng + "          servicePort: 8080" + "|END|"
-                            cplxStrng = cplxStrng + "      -----         " + "|END|"
+        //                     cplxStrng = cplxStrng + "      - path:" + ingressPathArray[i] + "|END|"
+        //                     cplxStrng = cplxStrng + "        backend:" + "|END|"
+        //                     cplxStrng = cplxStrng + "          serviceName: wncp-backend-service" + "|END|"
+        //                     cplxStrng = cplxStrng + "          servicePort: 8080" + "|END|"
+        //                     cplxStrng = cplxStrng + "      -----         " + "|END|"
 
-                        }
+        //                 }
 
-                        sh "sed -i 's!-cplxStrng-!${cplxStrng}!g' k8s/${SERVERDIRS[j]}.yaml"
+        //                 sh "sed -i 's!-cplxStrng-!${cplxStrng}!g' k8s/${SERVERDIRS[j]}.yaml"
 
-                        sh "sed -i 's/|END|/\\n/g' k8s/${SERVERDIRS[j]}.yaml"
-                    }
-                }
-            }
-        }
+        //                 sh "sed -i 's/|END|/\\n/g' k8s/${SERVERDIRS[j]}.yaml"
+        //             }
+        //         }
+        //     }
+        // }
 
         stage('Create name space GKE') {
             steps{
