@@ -8,3 +8,7 @@ curl -X POST http://saumik1.mylabserver.com:8080/job/RestAPI-Test1/build --user 
 
 curl -X POST http://localhost:8080/job/RestAPI-Test1/build --user sameera:113a8346280f9b195011099b81a3b53cf3 -H 'Jenkins-Crumb:c3d371ecd8af4d071071d376f1d1860c3385925e14754e5ed07af2369a632e1e' --data-urlencode json='{"parameter": [{"name":"param1", "value":"AA,CC,FF,GGG"}, {"name": "ingressPaths", "value":"/cloud-portal-services/*,/cloud-portal-services2/*,/cloud-portal-services3/*"} ]}'
 
+
+App and services
+curl -X POST http://localhost:8080/job/RestAPI-Test1/build --user sameera:113a8346280f9b195011099b81a3b53cf3 -H 'Jenkins-Crumb:c3d371ecd8af4d071071d376f1d1860c3385925e14754e5ed07af2369a632e1e' --data-urlencode json='{"parameter":[{"name":"app-name","value":"wncp-backend,wncp-fronend"},{"name":"namespace","value":"wncp-test-1,wncp-test-1"},{"name":"replicas","value":"1,1"},{"name":"image-path","value":"gcr.io/wn-cloud-275704/cloud-portal-service@sha256:d44480f23dc411a38b65c95e27508a3101c743f2392b2b98455cde237433e730,gcr.io/wn-cloud-275704/cloud-portal-frontend@sha256:a43821b760dbb883e089f55c12b2a5553f4017bc812f733a1403452402026134"},{"name":"service-name","value":"wncp-backend-service, wncp-fronend-service"},{"name":"cluster-ip","value":"10.0.1.2,10.0.1.1"},{"name":"service-port","value":"8080,8080"},{"name":"protocol","value":"TCP,TCP"}]}'
+

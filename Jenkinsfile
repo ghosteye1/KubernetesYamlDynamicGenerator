@@ -12,8 +12,14 @@ node {
 pipeline {
     agent any
     environment {
-        param1 = "${param1}"
-        ingressPaths = "${ingressPaths}"
+        appName = "${app-name}"
+        namespace = "${namespace}"
+        replicas = "${replicas}"
+        imagePath = "${image-path}"
+        serviceName = "${service-name}"
+        clusterIP = "${cluster-ip}"
+        servicePort = "${service-port}"
+        protocol = "${protocol}"
     }
     stages {
         stage("Checkout code") {
@@ -33,40 +39,46 @@ pipeline {
                 
 
                 script {
-                    print('param '+env.param1)
-                    print('ingressPaths '+env.ingressPaths)
+                    print('appName '+env.app-name)
+                    print('namespace '+env.namespace)
+                    print('replicas '+env.replicas)
+                    print('imagePath '+env.image-path)
+                    print('serviceName '+env.service-name)
+                    print('clusterIP '+env.cluster-ip)
+                    print('servicePort '+env.service-port)
+                    print('protocol '+env.protocol)
                 }
             }
         }
-        stage('generate dynamic deployments') {
-            steps {
-                script {
-                    ingressPathArray = ingressPaths.split(',')
+        // stage('generate dynamic deployments') {
+        //     steps {
+        //         script {
+        //             ingressPathArray = ingressPaths.split(',')
 
-                    for (int j = 0; j < SERVERDIRS.size(); j++) {
-                        //echo "${SERVERDIRS[i]}"
-                        sh "cp ingressDynamic.yaml k8s/${SERVERDIRS[j]}.yaml"
+        //             for (int j = 0; j < SERVERDIRS.size(); j++) {
+        //                 //echo "${SERVERDIRS[i]}"
+        //                 sh "cp ingressDynamic.yaml k8s/${SERVERDIRS[j]}.yaml"
 
-                        cplxStrng = ""
-                        for (int i = 0; i < ingressPathArray.size(); i++) {
-                            echo "ingressPathArray : ${ingressPathArray[i]}"
-                            //cplxStrng = cplxStrng + "\t"+ texts[i] + "|END|" //"/\n"
+        //                 cplxStrng = ""
+        //                 for (int i = 0; i < ingressPathArray.size(); i++) {
+        //                     echo "ingressPathArray : ${ingressPathArray[i]}"
+        //                     //cplxStrng = cplxStrng + "\t"+ texts[i] + "|END|" //"/\n"
 
-                            cplxStrng = cplxStrng + "      - path:" + ingressPathArray[i] + "|END|"
-                            cplxStrng = cplxStrng + "        backend:" + "|END|"
-                            cplxStrng = cplxStrng + "          serviceName: wncp-backend-service" + "|END|"
-                            cplxStrng = cplxStrng + "          servicePort: 8080" + "|END|"
-                            cplxStrng = cplxStrng + "      -----         " + "|END|"
+        //                     cplxStrng = cplxStrng + "      - path:" + ingressPathArray[i] + "|END|"
+        //                     cplxStrng = cplxStrng + "        backend:" + "|END|"
+        //                     cplxStrng = cplxStrng + "          serviceName: wncp-backend-service" + "|END|"
+        //                     cplxStrng = cplxStrng + "          servicePort: 8080" + "|END|"
+        //                     cplxStrng = cplxStrng + "      -----         " + "|END|"
 
-                        }
+        //                 }
 
-                        sh "sed -i 's!-cplxStrng-!${cplxStrng}!g' k8s/${SERVERDIRS[j]}.yaml"
+        //                 sh "sed -i 's!-cplxStrng-!${cplxStrng}!g' k8s/${SERVERDIRS[j]}.yaml"
 
-                        sh "sed -i 's/|END|/\\n/g' k8s/${SERVERDIRS[j]}.yaml"
-                    }
-                }
-            }
-        }
+        //                 sh "sed -i 's/|END|/\\n/g' k8s/${SERVERDIRS[j]}.yaml"
+        //             }
+        //         }
+        //     }
+        // }
 
         // stage ('Looping') {
         //         steps	{
