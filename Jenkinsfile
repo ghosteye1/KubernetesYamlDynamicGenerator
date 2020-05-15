@@ -50,6 +50,43 @@ pipeline {
                 }
             }
         }
+        stage('generate dynamic deployments') {
+            steps {
+                script {
+                    appname = appname.split(',')
+                    namespace = namespace.split(',')
+                    replicas = replicas.split(',')
+                    imagepath = imagepath.split(',')
+                    servicename = servicename.split(',')
+                    clusterip = clusterip.split(',')
+                    serviceport = serviceport.split(',')
+                    protocol = protocol.split(',')
+
+                    for (int j = 0; j < appname.size(); j++) {
+                        echo "${appname[i]}"
+                        sh "cp deployment.yaml k8s/${appname[j]}.yaml"
+
+                        // cplxStrng = ""
+                        // for (int i = 0; i < ingressPathArray.size(); i++) {
+                        //     echo "ingressPathArray : ${ingressPathArray[i]}"
+                        //     //cplxStrng = cplxStrng + "\t"+ texts[i] + "|END|" //"/\n"
+
+                        //     cplxStrng = cplxStrng + "      - path:" + ingressPathArray[i] + "|END|"
+                        //     cplxStrng = cplxStrng + "        backend:" + "|END|"
+                        //     cplxStrng = cplxStrng + "          serviceName: wncp-backend-service" + "|END|"
+                        //     cplxStrng = cplxStrng + "          servicePort: 8080" + "|END|"
+                        //     cplxStrng = cplxStrng + "      -----         " + "|END|"
+
+                        // }
+
+                        // sh "sed -i 's!-cplxStrng-!${cplxStrng}!g' k8s/${SERVERDIRS[j]}.yaml"
+
+                        // sh "sed -i 's/|END|/\\n/g' k8s/${SERVERDIRS[j]}.yaml"
+                    }
+                }
+            }
+        }
+
         // stage('generate dynamic deployments') {
         //     steps {
         //         script {
