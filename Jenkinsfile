@@ -37,13 +37,19 @@ pipeline {
                             cplxStrng = cplxStrng + "\t"+ SERVERDIRS[i] //+ "\n"
                         }
 
-                        string="QQ,WW,EE,TT"
-                        array=(`echo $string | sed 's/,/\n/g'`)
-
-                        for (int i = 0; i < array.size(); i++) {
-                            //echo "${SERVERDIRS[i]}"
-                            arraString = arraString + "\t"+ array[i] //+ "\n"
+                        def repeat(val, x=10){
+                            for(i in 0..<x){
+                                println val
+                            }
                         }
+
+                        // string="QQ,WW,EE,TT"
+                        // array=(echo $string | sed 's/,/\n/g')
+
+                        // for (int i = 0; i < array.size(); i++) {
+                        //     //echo "${SERVERDIRS[i]}"
+                        //     arraString = arraString + "\t"+ array[i] //+ "\n"
+                        // }
                     }
 
                     sh "Array Split${arraString} >> ingressDynamic.yaml"
