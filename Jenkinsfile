@@ -1,7 +1,12 @@
 cplxStrng = "";
 
 pipeline {
-    agent any
+    //agent any //Use this for default
+    agent{
+	    node{
+	    	label 'cd-jenkins'
+	    }
+    }
     environment {
         PROJECT_ID = 'wn-cloud-275704'
 		CLUSTER_NAME = 'wn-cloud-portal-test'
