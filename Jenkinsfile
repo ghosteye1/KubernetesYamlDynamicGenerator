@@ -6,7 +6,7 @@ pipeline {
         PROJECT_ID = 'wn-cloud-275704'
 		CLUSTER_NAME = 'wn-cloud-portal-test'
 		LOCATION = 'us-central1-c'
-		CREDENTIALS_ID = 'gke2'
+		CREDENTIALS_ID = 'wncp-k8s-service-accnt'
     }
     stages {
         stage("Checkout code") {
